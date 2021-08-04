@@ -1,34 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Example app with styled-components
 
-## Getting Started
+This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
 
-First, run the development server:
+For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+
+## Preview
+
+Preview the example live on [StackBlitz](http://stackblitz.com/):
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
+
+## Deploy your own
+
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
+
+## How to use
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npm run dev
+npx create-next-app --example with-styled-components with-styled-components-app
 # or
-yarn dev
+yarn create next-app --example with-styled-components with-styled-components-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Try it on CodeSandbox
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Notes
 
-## Learn More
+When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
 
-To learn more about Next.js, take a look at the following resources:
+<details>
+<summary>Click to expand workaround example</summary>
+<br />
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**components/StyledLink.js**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```javascript
+import Link from 'next/link'
+import styled from 'styled-components'
 
-## Deploy on Vercel
+const StyledLink = ({ as, children, className, href }) => (
+  <Link href={href} as={as} passHref>
+    <a className={className}>{children}</a>
+  </Link>
+)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+export default styled(StyledLink)`
+  color: #0075e0;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  &:hover {
+    color: #40a9ff;
+  }
+
+  &:focus {
+    color: #40a9ff;
+    outline: none;
+    border: 0;
+  }
+`
+```
+
+**pages/index.js**
+
+```javascript
+import StyledLink from '../components/StyledLink'
+
+export default () => (
+  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
+    First post
+  </StyledLink>
+)
+```
+
+</details>
