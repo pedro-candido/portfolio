@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     width: 100%;
     scroll-behavior: smooth;
+    font-family: 'Fira Sans';
   }
   #__next {
     flex: 1;
