@@ -14,7 +14,7 @@ const Container = styled.main`
 `
 
 const Title = styled.h2`
-    font-size: 50px;
+    font-size: 2.5rem;
     color: #fff;
     &:hover {
         cursor: default;
@@ -27,6 +27,11 @@ const ScrollDown = styled(FiChevronDown)`
     bottom: 3%;
     font-size: 50px;
     cursor: pointer;
+    transition: all .2s;
+    &:hover {
+        transform: scale(1.2);
+        transition: all .4s;
+    }
 `
 
 export default {

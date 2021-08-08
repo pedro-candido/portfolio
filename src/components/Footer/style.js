@@ -7,6 +7,7 @@ const Styled = styled.footer`
     background-color: ${({theme}) => theme.colors.primary.main.color};
     min-height: 50px;
     align-items: center;
+    margin-top: 5%;
 `
 
 const Item = styled.a`
