@@ -3,7 +3,7 @@ import { FiChevronDown } from 'react-icons/fi'
 
 
 const Container = styled.main`
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -15,11 +15,13 @@ const Container = styled.main`
     background-attachment: fixed;
 `
 
-const Name = styled.h2`
-    font-size: 2.5rem;
+const Header = styled.div`
     position: absolute;
     top: 5%;
-    left: 2%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    width: 70vw;
     color: #fff;
     &:hover {
         cursor: default;
@@ -49,8 +51,6 @@ const ScrollDown = styled(FiChevronDown)`
 
 export const MeImage = styled.img`
     position: absolute;
-    right: 5%;
-    top: 5%;
     border-radius: 100%;
     border: 2px solid #fff;
     width: 10%;
@@ -71,5 +71,5 @@ export default {
     Container,
     Title,
     ScrollDown,
-    Name
+    Header
 }

@@ -14,12 +14,12 @@ export const Cover = () => {
 
     return (
         <CoverStyle.Container id='start'>
-            <Me />
-            <CoverStyle.Name>
+            <CoverStyle.Header>
                 {name.toUpperCase()}
-            </CoverStyle.Name>
+                <Me />
+            </CoverStyle.Header>
             <CoverStyle.Title>
-                {'Meu Porfólio'}
+                {'Meu Portfólio'}
             </CoverStyle.Title>
             <a href="#footer">
                 <CoverStyle.ScrollDown />
