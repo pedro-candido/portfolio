@@ -9,12 +9,25 @@ const Container = styled.main`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('/images/background.png');
-    background-size: cover;
+    background: #5d198f;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+`
+
+const Name = styled.h2`
+    font-size: 2.5rem;
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    color: #fff;
+    &:hover {
+        cursor: default;
+    }
 `
 
 const Title = styled.h2`
-    font-size: 2.5rem;
+    font-size: 3.3rem;
     color: #fff;
     &:hover {
         cursor: default;
@@ -34,8 +47,29 @@ const ScrollDown = styled(FiChevronDown)`
     }
 `
 
+export const MeImage = styled.img`
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    width: 10%;
+    opacity: 0.5;
+    transition: .5s;
+`
+
+export const MeLink = styled.a`
+    &:hover {
+        img {
+            opacity: 1;
+            transition: .4s;
+        }
+    }
+`
+
 export default {
     Container,
     Title,
-    ScrollDown
+    ScrollDown,
+    Name
 }

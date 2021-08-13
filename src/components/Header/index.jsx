@@ -2,10 +2,12 @@ import { HeaderContainer, HeaderNav, Image } from './style'
 
 const Logo = () => {
     return(
-        <Image
-            src='/images/logo.svg' 
-            alt='Logo Pedro' 
-        />
+        <a href='#start'>
+            <Image
+                src='/images/logo.svg' 
+                alt='Logo Pedro' 
+            />
+        </a>
     )
 }
 

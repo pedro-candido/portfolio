@@ -1,16 +1,29 @@
-import { useRef } from 'react'
-import CoverStyle from './style'
+import CoverStyle, { MeImage, MeLink } from './style'
+
+
+const Me = () => {
+    return (
+        <MeLink href='https://www.linkedin.com/in/pedro-candido/' target='_blank'>
+            <MeImage src='/images/me.jpeg' />
+        </MeLink>
+    )
+}
 
 export const Cover = () => {
     const name = "Pedro Ferreira Candido"
-    const myRef = useRef(null)
-
-    const executeToScroll = () => myRef.current.scrollIntoView()
 
     return (
-        <CoverStyle.Container>
-            <CoverStyle.Title ref={myRef}>{name.toUpperCase()}</CoverStyle.Title>
-            <CoverStyle.ScrollDown onClick={executeToScroll} />
+        <CoverStyle.Container id='start'>
+            <Me />
+            <CoverStyle.Name>
+                {name.toUpperCase()}
+            </CoverStyle.Name>
+            <CoverStyle.Title>
+                {'Meu Porfólio'}
+            </CoverStyle.Title>
+            <a href="#footer">
+                <CoverStyle.ScrollDown />
+            </a>
         </CoverStyle.Container>
     )
 }

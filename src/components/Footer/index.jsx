@@ -16,7 +16,7 @@ export const Footer = () => {
         }
     ]
     return (
-        <FooterContainer.Styled>
+        <FooterContainer.Styled id="footer">
             <FooterContainer.Social>
                 {socialMedia.map((social) => {
                     return (
